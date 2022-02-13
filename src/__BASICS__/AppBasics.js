@@ -5,15 +5,24 @@ import AlignToggle from "./ToggleStyles/AlignToggle"; */
 import ShowHide from "./Toggle/ShowHide";
 import ChangeColor from "./ColorChanger/ChangeColor";
 import ColorSliders from "./ColorSliders.jsx/ColorSliders";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal/Modal";
 import './Modal/modal.css';
+import Carousel from "./Carousel/Carousel";
+import axios from "axios";
 
 const AppBasics = () => {
+    const [photos,setPhotos] = useState([])
     const [modalShowImg,setModalShowImg] = useState(false)
     const [modalColorSlider,setModalColorSlider] = useState(false)
     const [modalColorChanger,setModalColorChanger] = useState(false)
     const [modalShowHide,setModalShowHide] = useState(false)
+    const [modalCarousel,setModalCarousel] = useState(false)
+
+    useEffect(()=>{
+        axios.get("https://jsonplaceholder.typicode.com/photos?_limit=5")
+        .then(data=> setPhotos(data.data))
+    },[])
 
     return (
         <>
@@ -43,6 +52,9 @@ const AppBasics = () => {
                 </button>
                 <button onClick={()=>setModalShowHide(true)}>
                     ShowHide
+                </button>
+                <button onClick={()=>setModalCarousel(true)}>
+                    Carousel
                 </button>
             </div>
 
@@ -83,6 +95,15 @@ const AppBasics = () => {
 
             <ShowHide/>
             </Modal>
+
+            <Modal 
+                state={modalCarousel} 
+                chgModalState={setModalCarousel}
+                title={"Carousel"}
+            >
+                <Carousel images={photos}/>
+            </Modal>
+
         </>
     )
 
