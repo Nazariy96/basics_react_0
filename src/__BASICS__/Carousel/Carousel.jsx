@@ -24,13 +24,16 @@ export default function Carousel({images}) {
 
   return (
     <>
+      {images &&
       <div>
-        <p>{images[selectedIndex].id}</p>
-        <img src={images[selectedIndex].url} alt={images[selectedIndex].title} width="100px" height="100px"/>
+        <p>{images[selectedIndex]?.id}</p>
+        <img src={images[selectedIndex]?.url} alt={images[selectedIndex]?.title} width="100px" />
         
         <button onClick={previous}>{"<"}</button>
         <button onClick={next}>{">"}</button>
+        
       </div>
+      }
     </>
   );
 }

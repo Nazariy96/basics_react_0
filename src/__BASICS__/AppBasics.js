@@ -13,7 +13,7 @@ import axios from "axios";
 
 const AppBasics = () => {
     const [photos,setPhotos] = useState([])
-    
+
     const [modalShowImg,setModalShowImg] = useState(false)
     const [modalColorSlider,setModalColorSlider] = useState(false)
     const [modalColorChanger,setModalColorChanger] = useState(false)
