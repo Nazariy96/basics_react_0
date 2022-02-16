@@ -31,7 +31,7 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault() // stop default behavior ,re-render of page, upon submitting 
-        if(formData.password === formData.passwordConfirm) return console.log("password's do not match")
+        if(formData.password !== formData.passwordConfirm) return console.log("password's do not match")
         console.log("submited form -> ",formData)
 
     }
