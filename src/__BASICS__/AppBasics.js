@@ -10,6 +10,7 @@ import Modal from "./Modal/Modal";
 import './Modal/modal.css';
 import Carousel from "./Carousel/Carousel";
 import axios from "axios";
+import Form from "./Form/Form";
 
 const AppBasics = () => {
     const [photos,setPhotos] = useState([])
@@ -19,6 +20,7 @@ const AppBasics = () => {
     const [modalColorChanger,setModalColorChanger] = useState(false)
     const [modalShowHide,setModalShowHide] = useState(false)
     const [modalCarousel,setModalCarousel] = useState(false)
+    const [modalForm,setModalForm] = useState(false)
 
     useEffect(()=>{
         axios.get("https://jsonplaceholder.typicode.com/photos?_limit=5")
@@ -56,6 +58,9 @@ const AppBasics = () => {
                 </button>
                 <button onClick={()=>setModalCarousel(true)}>
                     Carousel
+                </button>
+                <button onClick={()=>setModalForm(true)}>
+                    Form
                 </button>
             </div>
 
@@ -103,6 +108,13 @@ const AppBasics = () => {
                 title={"Carousel"}
             >
                 <Carousel images={photos}/>
+            </Modal>
+            <Modal 
+                state={modalForm} 
+                chgModalState={setModalForm}
+                title={"Form"}
+            >
+                <Form/>
             </Modal>
 
         </>

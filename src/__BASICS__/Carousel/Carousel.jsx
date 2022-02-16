@@ -13,26 +13,27 @@ export default function Carousel({images}) {
   const previous = () => {
     /* selectNewImage(selectedIndex, images, false); */
     const nextIndex = selectedIndex > 0 ? selectedIndex - 1 : images.length - 1
-    setSelectedIndex(nextIndex)
+    setSelectedIndex( prevIndex => prevIndex = nextIndex)
   };
 
   const next = () => {
     /* selectNewImage(selectedIndex, images, true); */
     const nextIndex = selectedIndex < images.length - 1 ? selectedIndex + 1 : 0
-    setSelectedIndex(nextIndex)
+    setSelectedIndex( prevIndex => prevIndex = nextIndex)
   };
 
   return (
     <>
       {images &&
-      <div>
-        <p>{images[selectedIndex]?.id}</p>
-        <img src={images[selectedIndex]?.url} alt={images[selectedIndex]?.title} width="100px" />
-        
-        <button onClick={previous}>{"<"}</button>
-        <button onClick={next}>{">"}</button>
-        
-      </div>
+        <div>
+
+          <img src={images[selectedIndex]?.url} alt={images[selectedIndex]?.title} width="100px" />
+          <p>{images[selectedIndex]?.id}</p>
+          
+          <button onClick={previous}>{"<"}</button>
+          <button onClick={next}>{">"}</button>
+          
+        </div>
       }
     </>
   );
